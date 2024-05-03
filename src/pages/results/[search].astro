@@ -1,0 +1,25 @@
+---
+import Movie from "@components/Movie.astro";
+import Layout from "@layout/Layout.astro";
+import { ApiMovie } from "src/api/apiMovie";
+import {Search as SearhComponent } from "@components/Search";
+const {search} =Astro.params;
+const moviesResponse = await ApiMovie.buscarPelicula(search!);
+
+---
+<Layout>   
+    <div class="row">
+        <div class="col">
+            <SearhComponent  client:load/>
+        </div>        
+    </div>
+  <div class="row">    
+    {
+     (moviesResponse.total_results>0)
+     ?moviesResponse.results.map((movie)=><Movie  movie={movie}></Movie>)
+     :<div class="pt-5">
+        <h1>No se encontraron resultados de peliculas con el titulo <b>"{search}"</b></h1>
+     </div>
+    }
+  </div>
+</Layout>

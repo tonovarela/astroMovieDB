@@ -17,6 +17,12 @@ export class ApiMovie {
       return data;        
     }
 
+    public static buscarPelicula= async (termino: string) :Promise<MoviesResponse> => { 
+        const response = await fetch(`${baseUrl}/search/movie?api_key=${apiKey}&language=es&page=1&include_adult=false&query=${termino}`);                          
+        const data = await response.json() as MoviesResponse;         
+        return data;        
+      }
+
     public static obtenerTrailers = async (id: string) :Promise<VideoShort[]> => { 
         const response= await fetch(`${baseUrl}/movie/${id}/videos?api_key=${apiKey}&language=es`);            
         const data = await response.json() as TrailersResponse;

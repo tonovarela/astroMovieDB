@@ -3,10 +3,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@layout/*": ["src/layout/*"],
-      "@components/*": ["src/components/*"],
-      "@interfaces/*": ["src/interfaces/*"],
-    }
+      "@layout/*": [
+        "src/layout/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
-
 }

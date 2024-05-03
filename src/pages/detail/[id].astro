@@ -10,11 +10,18 @@ const poster =`https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 ---
 
 <Layout>
-    <div class="row mt-5">
-      <div class="col-md-4">
+  <div class="d-flex flex-row bd-highlight mb-3">
+    <div class="p-2 bd-highlight">
+      <button onclick="history.back()"  class="btn btn-info text-white">Regresar</button>
+    </div>
+    
+  </div>
+    <div class="row mt-5">      
+      <div class="col-md-4">        
      <img src={poster} transition:name={id?.toString()}  class="img-fluid rounded-start">
       </div>
       <div class="col-md-8">
+        
         <h1><span class="badge text-bg-dark"> {movie.title}</span></h1>
         <h4>{movie.original_title}</h4>
         <h2>Sinopsis</h2>
