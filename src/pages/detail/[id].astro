@@ -1,0 +1,36 @@
+---
+
+import Layout from "@layout/Layout.astro";
+import { ApiMovie } from "src/api/apiMovie";
+
+const {id}= Astro.params;
+const movie =await ApiMovie.obtenerPorId(id ||'0');
+const trailers = await ApiMovie.obtenerTrailers(id||'0');
+const poster =`https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+---
+
+<Layout>
+    <div class="row mt-5">
+      <div class="col-md-4">
+     <img src={poster} transition:name={id?.toString()}  class="img-fluid rounded-start">
+      </div>
+      <div class="col-md-8">
+        <h1><span class="badge text-bg-dark"> {movie.title}</span></h1>
+        <h4>{movie.original_title}</h4>
+        <h2>Sinopsis</h2>
+        <p>{movie.overview}</p>
+        <p><span class="badge text-bg-secondary"> {movie.release_date}</span></p>
+        <h1><span class="badge text-bg-danger"> {Math.round(movie.vote_average)}</span></h1>
+      </div>
+    </div>
+    <div class="row">      
+      {trailers.length>0 && 
+      <>
+      <h1>Trailer</h1>
+      <iframe  width="1820" height="720" allowfullscreen src={`https://www.youtube.com/embed/${trailers[0].key}`}></iframe>
+      </>
+      }     
+    </div>
+     
+
+</Layout>

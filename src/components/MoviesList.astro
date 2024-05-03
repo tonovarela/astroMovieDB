@@ -1,0 +1,14 @@
+---
+
+import { ApiMovie } from "src/api/apiMovie";
+import Movie from "./Movie.astro";
+const moviesResponse = await ApiMovie.listarPeliculas()
+
+---
+
+  <div class="row">
+    {
+      moviesResponse.results.map((movie)=><Movie  movie={movie}></Movie>)
+    }
+  </div>
+
